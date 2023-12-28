@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "price-checker"
+version = "0.1.0"
+description = ""
+authors = ["Dimitar SIrakov <dimitar.sir96@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.5"
+fastapi = "^0.103.1"
+sqlalchemy = "^2.0.21"
+uvicorn = "^0.23.2"
+pytest = "^7.4.2"
+httpx = "^0.26.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.17.0"
+black = "^23.1.0"
+
+
