@@ -32,6 +32,7 @@ def test_create_item():
     response = client.post(
         "/items/", json={"name": "Test Item", "description": "This is a test item"}
     )
+    print(response.url)
     assert response.status_code == 200, response.text
     data = response.json()
     assert data["name"] == "Test Item"
@@ -60,8 +61,9 @@ def test_update_item():
     item_id = 1
     response = client.put(
         f"/items/{item_id}",
-        json={"name": "Updated Item", "description": "This is an updated item"},
+        json={"name": "Updated Item", "description": "This is an updated item", "price": 2.99, "date": 1705067200},
     )
+    print(response.url)
     assert response.status_code == 200, response.text
     data = response.json()
     assert data["name"] == "Updated Item"
@@ -78,6 +80,14 @@ def test_delete_item():
     # Try to get the deleted item
     response = client.get(f"/items/{item_id}")
     assert response.status_code == 404, response.text
+
+def test_all_items():
+    response = client.get(f"/all")
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert len(data) == 1
+    assert data[0]["name"] == "Test Item"
+    assert data[0]["description"] == "This is a test item"
 
 
 def setup() -> None:
